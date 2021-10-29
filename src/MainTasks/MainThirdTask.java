@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 public class MainThirdTask {
     public static void main(String[] args) {
-        System.out.println("Write how many numbers i should generate for you:");
         newIntInput();
     }
 
     public static void newIntInput() {
+        System.out.println("Write how many numbers i should generate for you:");
+
         int amount;
         Scanner in = new Scanner(System.in);
 
         try {
             amount = in.nextInt();
             generateRandomInt(amount);
-            newIntInput();
         } catch (InputMismatchException e) {
             System.out.println("Please enter integer!");
             newIntInput();
@@ -39,12 +39,9 @@ public class MainThirdTask {
         System.out.println("Result in one line:");
         System.out.println(String.join(", ", result));
 
-        System.out.println("");
-
-        System.out.println("Result on different lines:");
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
+        System.out.println("\nResult on different lines:");
+        for (String s : result) {
+            System.out.println(s);
         }
-        newIntInput();
     }
 }

@@ -11,6 +11,25 @@ public class MainFourthTask {
         newIntInput();
     }
 
+    public static void newIntInput() {
+        System.out.println("Enter the numbers and I'll sum them up. Separate numbers with spaces.");
+
+        boolean intCheckFlag;
+        String integers;
+
+        Scanner in = new Scanner(System.in);
+        integers = in.nextLine();
+        
+        intCheckFlag = regexCheck(integers);
+
+        if (!intCheckFlag) {
+            calculateSum(integers);
+        } else  {
+            System.out.println("Enter only numbers. Please try again!");
+            newIntInput();
+        }
+    }
+
     public static void calculateSum(String integers) {
         int sum = 0;
         String[] strArr = integers.split(" ");
@@ -25,29 +44,10 @@ public class MainFourthTask {
     public static boolean regexCheck(String name) {
         String regex = "\\p{Punct}+|[a-zA-Z]";
         boolean flag;
-
-        //  Only text check
+        
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
         flag = matcher.find();
         return flag;
-    }
-
-    public static void newIntInput() {
-        System.out.println("Enter the numbers and I'll sum them up. Separate numbers with spaces.");
-
-        boolean intCheckFlag;
-        String integers;
-
-        Scanner in = new Scanner(System.in);
-        integers = in.nextLine();
-        intCheckFlag = regexCheck(integers);
-
-        if (!intCheckFlag) {
-            calculateSum(integers);
-        } else  {
-            System.out.println("Enter only numbers. Please try again!");
-        }
-        newIntInput();
     }
 }

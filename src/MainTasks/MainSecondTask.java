@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class MainSecondTask {
     public static void main(String[] args) {
-        System.out.println("Enter the arguments and I'll revert them:");
         printResult(newArrayInput());
     }
 
     public static char[] newArrayInput() {
+        System.out.println("Enter the arguments and I'll revert them:");
+
         String arguments;
 
         Scanner in = new Scanner(System.in);
