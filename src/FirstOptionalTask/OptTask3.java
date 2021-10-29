@@ -10,17 +10,17 @@ import java.util.Scanner;
 
 public class OptTask3 {
     public static void main(String[] args) {
-        System.out.println("---------------------------------");
-        System.out.println("Enter positive multiple integers into the console. I will output to the console those that are shorter than average. Separate numbers with spaces.");
         newIntInput();
     }
 
     public static void newIntInput() {
+        System.out.println("---------------------------------");
+        System.out.println("Enter positive multiple integers into the console. I will output to the console those that are shorter than average. Separate numbers with spaces.");
+
         Scanner in = new Scanner(System.in);
         try {
             int[] arr = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             findIntBelowAverLong(arr);
-            newIntInput();
         } catch (NumberFormatException e) {
             System.out.println("Please enter numbers in the range 0 to 2.147.483.648!");
             newIntInput();
@@ -35,14 +35,29 @@ public class OptTask3 {
 
         int averIntLength = findAverageLength(arrIntStr);
 
-        List<String> resultArr = new ArrayList<String>();
-        for (int i = 0; i < arrIntStr.length; i++) {
-            if (arrIntStr[i].length() < averIntLength) {
-                resultArr.add(arrIntStr[i]);
+        List<String> resultArr = new ArrayList<>();
+        for (String s : arrIntStr) {
+            if (s.length() < averIntLength) {
+                resultArr.add(s);
             }
         }
-
         printResult(averIntLength, resultArr);
+    }
+
+    public static int findAverageLength(String[] arr) {
+        double averageLength;
+        double lengthSum = 0;
+        int result;
+
+        for (String s : arr) {
+            lengthSum += s.length();
+        }
+
+        averageLength = lengthSum / arr.length;
+        System.out.println("averageLength " + averageLength);
+
+        result = (int) Math.round(averageLength);
+        return result;
     }
 
     private static void printResult(int averageLength, List<String> resultList) {
@@ -55,20 +70,5 @@ public class OptTask3 {
         } else {
             System.out.println("Can't find numbers below average length. Please, try again");
         }
-    }
-
-    public static int findAverageLength(String[] arr) {
-        double averageLength;
-        double lengthSum = 0;
-        int result;
-        for (int i = 0; i < arr.length; i++) {
-            lengthSum += arr[i].length();
-        }
-
-        averageLength = lengthSum / arr.length;
-        System.out.println("averageLength " + averageLength);
-
-        result = (int) Math.round(averageLength);
-        return result;
     }
 }

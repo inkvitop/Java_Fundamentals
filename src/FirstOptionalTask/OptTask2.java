@@ -10,17 +10,18 @@ import java.util.Scanner;
 
 public class OptTask2 {
     public static void main(String[] args) {
-        System.out.println("---------------------------------");
-        System.out.println("Enter positive multiple integers into the console. I will sort them by length from smallest to largest. Separate numbers with spaces.");
         newIntInput();
     }
 
     public static void newIntInput() {
+        System.out.println("---------------------------------");
+        System.out.println("Enter positive multiple integers into the console. I will sort them by length from smallest to largest. Separate numbers with spaces.");
+
         Scanner in = new Scanner(System.in);
+
         try {
             int[] arr = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             sortArray(arr);
-            newIntInput();
         } catch (NumberFormatException e) {
             System.out.println("Please enter numbers in the range 0 to 2.147.483.648!");
             newIntInput();
@@ -35,10 +36,13 @@ public class OptTask2 {
         }
 
         List<String> listIntStr = Arrays.asList(arrIntStr);
-
-        // SORT
         listIntStr.sort(Comparator.comparingInt(s -> Math.abs(s.length())));
+        printResult(listIntStr);
+    }
 
-        System.out.println(listIntStr);
+    public static void printResult(List<String> result) {
+        System.out.println("-----------------------");
+        System.out.println("All numbers are sorted by their length. Here they are:");
+        System.out.println(result);
     }
 }

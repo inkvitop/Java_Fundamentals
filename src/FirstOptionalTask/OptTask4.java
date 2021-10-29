@@ -11,17 +11,18 @@ import java.util.regex.Pattern;
 
 public class OptTask4 {
     public static void main(String[] args) {
-        System.out.println("---------------------------------");
-        System.out.println("Enter multiple integers into the console. I will find a number in which the number of different digits is minimal. Separate numbers with spaces.");
         newIntInput();
     }
 
     public static void newIntInput() {
+        System.out.println("---------------------------------");
+        System.out.println("Enter multiple integers into the console. I will find a number in which the number of different digits is minimal. Separate numbers with spaces.");
+
         Scanner in = new Scanner(System.in);
+
         try {
             int[] arr = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             findIntDifferentDigits(arr);
-            newIntInput();
         } catch (NumberFormatException e) {
             System.out.println("Please enter numbers in the range -2.147.483.648 to 2.147.483.648!");
             newIntInput();
@@ -52,7 +53,6 @@ public class OptTask4 {
             }
             diffDigitsArr[i] = matcherResult - arrStr[i].length();
         }
-
         printResult(arr, diffDigitsArr);
     }
 
@@ -62,7 +62,6 @@ public class OptTask4 {
         for (int i = 0; i < max.getAsInt() - 1; i++) {
             if (diffDigArr[i] == checker) {
                 System.out.println("Found the first number with the minimum number of distinct digits! \nHere it is = " + intArr[i]);
-                newIntInput();
                 break;
             } else {
                 checker++;

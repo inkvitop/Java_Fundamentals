@@ -9,20 +9,24 @@ import java.util.Scanner;
 
 public class OptTask5 {
     public static void main(String[] args) {
+        printInstructions();
+        newIntInput();
+    }
+
+    public static void printInstructions() {
         System.out.println("---------------------------------");
         System.out.println("Enter multiple integers into the console.");
         System.out.println("Will be found the number of numbers that contain only even numbers and numbers that contain the same number of even and odd numbers.");
         System.out.println("Separate numbers with spaces.");
         System.out.println("---------------------------------");
-        newIntInput();
     }
 
     public static void newIntInput() {
         Scanner in = new Scanner(System.in);
+
         try {
             int[] arr = Arrays.stream(in.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             findCountInt(arr);
-            newIntInput();
         } catch (NumberFormatException e) {
             System.out.println("Please enter numbers in the range -2.147.483.648 to 2.147.483.648!");
             newIntInput();
@@ -31,8 +35,8 @@ public class OptTask5 {
 
     public static void findCountInt(int[] arr) {
         int[] onlyEvenDigIndex = new int[arr.length];
-        List<String> onlyEvenDigList = new ArrayList<String>();
-        List<String> evenOddDigits = new ArrayList<String>();
+        List<String> onlyEvenDigList = new ArrayList<>();
+        List<String> evenOddDigits = new ArrayList<>();
 
         String[] strArr = arrToString(arr);
 
